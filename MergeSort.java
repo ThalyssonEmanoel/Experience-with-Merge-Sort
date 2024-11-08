@@ -3,9 +3,10 @@ import java.util.Arrays;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] arrayToSort = {19,18,26,17,20,10,30,31};
+        int[] arrayToSort = {19, 18, 26, 17, 20, 10, 30, 31};
+        System.out.println("Array original: " + Arrays.toString(arrayToSort));
         int[] sortedArray = mergeSort(arrayToSort);
-        System.out.println(Arrays.toString(sortedArray));
+        System.out.println("Array ordenado: " + Arrays.toString(sortedArray));
     }
 
     public static int[] mergeSort(int[] array) {
@@ -17,29 +18,33 @@ public class MergeSort {
         int[] left = Arrays.copyOfRange(array, 0, middle);
         int[] right = Arrays.copyOfRange(array, middle, array.length);
 
-        return merge(mergeSort(left), mergeSort(right));
+        System.out.println("Dividindo: " + Arrays.toString(array) + " em " + Arrays.toString(left) + " e " + Arrays.toString(right));
+
+        left = mergeSort(left);
+        right = mergeSort(right);
+
+        int[] merged = merge(left, right);
+        System.out.println("Mesclando: " + Arrays.toString(left) + " e " + Arrays.toString(right) + " em " + Arrays.toString(merged));
+
+        return merged;
     }
 
     public static int[] merge(int[] left, int[] right) {
         int[] result = new int[left.length + right.length];
-        int i = 0, j = 0, k = 0;
-
+        int i = 0, j = 0, preencher = 0;
         while (i < left.length && j < right.length) {
             if (left[i] <= right[j]) {
-                result[k++] = left[i++];
+                result[preencher++] = left[i++];
             } else {
-                result[k++] = right[j++];
+                result[preencher++] = right[j++];
             }
         }
-
         while (i < left.length) {
-            result[k++] = left[i++];
+            result[preencher++] = left[i++];
         }
-
         while (j < right.length) {
-            result[k++] = right[j++];
+            result[preencher++] = right[j++];
         }
-
         return result;
     }
 }
