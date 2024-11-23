@@ -18,13 +18,13 @@ public class MergeSort {
         int[] left = Arrays.copyOfRange(array, 0, middle);
         int[] right = Arrays.copyOfRange(array, middle, array.length);
 
-        System.out.println("Dividindo: " + Arrays.toString(array) + " em " + Arrays.toString(left) + " e " + Arrays.toString(right));
+        System.out.println("Dividido: " + Arrays.toString(left) + " e " + Arrays.toString(right));
 
         left = mergeSort(left);
         right = mergeSort(right);
 
         int[] merged = merge(left, right);
-        System.out.println("Mesclando: " + Arrays.toString(left) + " e " + Arrays.toString(right) + " em " + Arrays.toString(merged));
+        System.out.println("Mesclado: " + Arrays.toString(merged));
 
         return merged;
     }
